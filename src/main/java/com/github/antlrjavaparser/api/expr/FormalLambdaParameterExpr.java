@@ -1,15 +1,13 @@
 package com.github.antlrjavaparser.api.expr;
 
+import java.util.List;
+
+import com.github.antlrjavaparser.api.body.Parameter;
 import com.github.antlrjavaparser.api.visitor.GenericVisitor;
 import com.github.antlrjavaparser.api.visitor.VoidVisitor;
 
-/**
- * User: mdehaan Date: 3/19/14
- */
-public class LambdaExpr extends Expression {
-	private LambdaParameterExpr parameters;
-
-	private LambdaBodyExpr body;
+public class FormalLambdaParameterExpr extends LambdaParameterExpr {
+	private List<Parameter> parameters;
 
 	@Override
 	public <R, A> R accept(GenericVisitor<R, A> v, A arg) {
@@ -19,21 +17,15 @@ public class LambdaExpr extends Expression {
 	@Override
 	public <A> void accept(VoidVisitor<A> v, A arg) {
 		v.visit(this, arg);
+
 	}
 
-	public LambdaParameterExpr getParameters() {
+	public List<Parameter> getParameters() {
 		return parameters;
 	}
 
-	public void setParameters(LambdaParameterExpr parameters) {
+	public void setParameters(List<Parameter> parameters) {
 		this.parameters = parameters;
 	}
 
-	public LambdaBodyExpr getBody() {
-		return body;
-	}
-
-	public void setBody(LambdaBodyExpr body) {
-		this.body = body;
-	}
 }
